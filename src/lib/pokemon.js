@@ -8,4 +8,11 @@ export default {
             if (err) err(e);
         });
     },
+    getDetailPokemon(id, cb, err) {
+        client.get(`${endpoint}/${id}`).then(res => {
+            if(cb) cb(res);
+        }).catch(e => {
+            if (err) err(e);
+        });
+    },
 }

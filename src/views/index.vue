@@ -2,7 +2,7 @@
     <div>
         <div class="grid gap-4 grid-cols-12 mt-5">
             <div class="xl:col-span-3 col-span-12" v-for="(list, i) in lists" :key="i">
-                <CardContent />
+                <CardContent :name="list.name" :abilities="list.abilities" />
             </div>
         </div>
     </div>
@@ -24,11 +24,12 @@ const getData = () => {
         offset: 0,
     };
     const callback = (res) => {
-        const data = res.data.data.results;
+        const data = res.data.data;
         lists.value = data;
-        console.log("🚀 ~ file: index.vue:17 ~ callback ~ res:", data)
     };
-    const err = () => {};
+    const err = (e) => {
+        console.log(e);
+    };
 
     pokemonApi.getDataPokemon(params, callback, err);
 };

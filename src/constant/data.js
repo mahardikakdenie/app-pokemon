@@ -157,7 +157,7 @@ export const topMenu = [
   {
     title: "Menu",
     icon: "heroicons-outline:home",
-    link: "home",
+    link: "/home",
   },
 ];
 
