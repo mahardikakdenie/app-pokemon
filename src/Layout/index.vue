@@ -24,7 +24,7 @@
       ></div>
     </Transition>
     <!-- mobile sidebar -->
-    <Settings />
+    <!-- <Settings /> -->
 
     <div
       class="content-wrapper transition-all duration-150"
@@ -41,7 +41,7 @@
               : 'container-fluid'
           }`"
         >
-          <Breadcrumbs v-if="!this.$route.meta.hide" />
+          <!-- <Breadcrumbs v-if="!this.$route.meta.hide" /> -->
           <router-view v-slot="{ Component }">
             <transition name="router-animation" mode="out-in" appear>
               <component :is="Component"></component>

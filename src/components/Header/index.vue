@@ -40,9 +40,9 @@
           v-if="this.$store.themeSettingsStore.menuLayout === 'horizontal'"
           class="flex items-center space-x-4 rtl:space-x-reverse"
         >
-          <Logo v-if="window.width > 1280" />
+          <!-- <Logo v-if="window.width > 1280" />
           <MobileLogo v-else />
-          <handle-mobile-menu v-if="window.width < 1280" />
+          <handle-mobile-menu v-if="window.width < 1280" /> -->
         </div>
         <Mainnav
           v-if="
@@ -52,12 +52,6 @@
         <div
           class="nav-tools flex items-center lg:space-x-6 space-x-3 rtl:space-x-reverse"
         >
-          <LanguageVue />
-          <SwitchDark />
-          <MonochromeMode />
-          <Message v-if="window.width > 768" />
-          <Notification v-if="window.width > 768" />
-          <Profile v-if="window.width > 768" />
           <handle-mobile-menu v-if="window.width < 768" />
         </div>
       </div>

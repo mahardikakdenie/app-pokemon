@@ -190,13 +190,13 @@ export default {
             }
         },
 		isHasSubMenu(item) {
-			return item.child ? 'item-has-children' : '';
+			return item?.child ? 'item-has-children' : '';
 		},
 		isActiveMenu(i) {
 			return this.activeSubmenu === i ? 'open' : '';
 		},
 		isMenuActive(item) {
-			return this.$route.name === item.link ? 'menu-item-active' : '';
+			return this.$route.name === item?.link ? 'menu-item-active' : '';
 		},
     },
 
