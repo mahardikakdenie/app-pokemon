@@ -4,10 +4,7 @@
     <!-- end header -->
 
     <Sidebar
-      v-if="
-        this.$store.themeSettingsStore.menuLayout === 'vertical' &&
-        this.$store.themeSettingsStore.sidebarHidden === false &&
-        window.width > 1280
+      v-if="false
       "
     />
     <!-- main sidebar end -->

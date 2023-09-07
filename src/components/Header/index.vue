@@ -5,7 +5,7 @@
         this.$store.themeSettingsStore.navbarColor
       }
       ${
-        this.$store.themeSettingsStore.menuLayout === 'horizontal' && window.width > 1280
+        true
           ? 'py-1'
           : 'md:py-6 py-3'
       }
@@ -13,7 +13,7 @@
     >
       <div class="flex justify-between items-center h-full">
         <div
-          v-if="this.$store.themeSettingsStore.menuLayout === 'vertical'"
+          v-if="false"
           class="flex items-center md:space-x-4 space-x-2 rtl:space-x-reverse"
         >
           <button
@@ -37,7 +37,7 @@
           <SearchModal />
         </div>
         <div
-          v-if="this.$store.themeSettingsStore.menuLayout === 'horizontal'"
+          v-if="true"
           class="flex items-center space-x-4 rtl:space-x-reverse"
         >
           <!-- <Logo v-if="window.width > 1280" />
@@ -46,7 +46,7 @@
         </div>
         <Mainnav
           v-if="
-            this.$store.themeSettingsStore.menuLayout === 'horizontal' && window.width > 1280
+            true
           "
         />
         <div

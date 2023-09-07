@@ -9,6 +9,7 @@ export default {
   mounted() {
     this.$store.themeSettingsStore = useThemeSettingsStore()
     this.$store.themeSettingsStore.menuLayout = 'horizontal';
+    console.log("🚀 ~ file: App.vue:12 ~ mounted ~ this.$store.themeSettingsStore.menuLayout:", this.$store.themeSettingsStore.menuLayout)
   }
 }
 </script>
