@@ -33,6 +33,7 @@
                 />
                 
                 <Button
+                    v-if="!isHideFavorites"
                     icon="mdi:heart"
                     :isLoading="btnLoading"
                     :btnClass="`${$route.path.includes('favorite') || isFavorite ? 'btn-danger' : 'btn-outline-dark'} btn-sm`"
@@ -77,6 +78,10 @@ const props = defineProps({
     list: {
         type: Array,
         default: () => null,
+    },
+    isHideFavorites: {
+        type: Boolean,
+        default: false,
     }
 });
 

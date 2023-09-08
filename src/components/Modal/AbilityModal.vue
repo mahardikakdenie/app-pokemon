@@ -4,6 +4,7 @@
     <div v-else class="grid gap-4 grid-cols-12 mt-5">
         <div class="xl:col-span-3 col-span-12" v-for="(list, i) in lists" :key="i">
             <CardContent 
+                isHideFavorites
                 :name="list.name" 
                 :abilities="list?.favorite" 
             />
