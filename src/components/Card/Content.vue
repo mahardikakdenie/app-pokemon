@@ -3,12 +3,19 @@
 		<h5 class="card-title text-slate-900 dark:text-white">
 			{{ name }}
 		</h5>
-    {{abilities.length}}
         <accordion v-if="abilities.length !== 0" :items="items" class="mt-2">
             <template #content="">
                 <div class="p-2">
                     <ul class="max-w-md space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400">
-                        <li v-for="(list, i) in abilities" :key="i">
+                        <li 
+                            v-for="(list, i) in abilities" 
+                            :key="i" 
+                            :class="{
+                                'cursor-pointer': isClickAble,
+                            }"
+                            class="hover:text-blue-500"
+                            @click="seeAbilityDetail(list)"
+                        >
                             {{ list.ability.name }}
                         </li>
                     </ul>
@@ -48,7 +55,11 @@ defineProps({
     abilities: {
         type: Array,
         default: () => [],
-    }
+    },
+    isClickAble: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const items = [
@@ -61,6 +72,12 @@ const items = [
             ],
         },
     ];
+
+const emit = defineEmits(['see-abiliti']);
+
+const seeAbilityDetail = (ability) => {
+    emit('see-ability', ability);
+};
 </script>
 
 <style></style>

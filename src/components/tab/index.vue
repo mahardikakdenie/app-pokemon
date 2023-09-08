@@ -50,6 +50,10 @@ defineProps({
         type: Array,
         default: () => [],
     },
+    pokemon: {
+        type: Array,
+        default: () => [],
+    }
 });
 
 const emit = defineEmits(['set-tab']);

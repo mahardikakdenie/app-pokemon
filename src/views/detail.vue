@@ -32,7 +32,11 @@
         <div class="grid grid-cols-12 gap-6">
             <div class="lg:col-span-12 col-span-12">
                 <Card title="Ability" titleClass="text-center">
-                    <TabItem :tabs="pokemon.abilities" @set-tab="setCurrentTab" />
+                    <ul class="list space-y-8 text-center">
+                        <li v-for="(list, i) in pokemon.abilities" class="hover:text-blue-500" :key="i">
+                            {{ list.ability.name }}
+                        </li>
+                    </ul>
                 </Card>
             </div>
         </div>
@@ -41,7 +45,6 @@
 <script>
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
-import TabItem from '@/components/tab/index.vue'
 import { basicArea, basicAreaDark } from "@/constant/appex-chart.js";
 const img = 'https://img.pokemondb.net/artwork/large/pikachu.jpg';
 import pokemonApi from '@/lib/pokemon'
@@ -49,7 +52,6 @@ export default {
     components: {
         Card,
         Icon,
-        TabItem,
     },
     data() {
         return {
@@ -66,14 +68,12 @@ export default {
         getdetail() {
             const callback = (res) => {
                 this.pokemon = res.data.data;
+                console.log("🚀 ~ file: detail.vue:119 ~ callback ~ this.pokemon:", this.pokemon)
             };
             const err = (e) => {
                 console.log(e);
             };
             pokemonApi.getDetailPokemon(this.$route.params.name, callback, err);
-        },
-        setCurrentTab(data) {
-            console.log('data => ', data);
         },
     },
 };
