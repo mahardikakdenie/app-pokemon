@@ -23,13 +23,13 @@
                         <div
                             class="text-2xl font-medium text-slate-900 dark:text-slate-200 mb-[3px]"
                         >
-                            {{ pokemon.name }}
+                            {{ pokemon.name  ?? 'bulbasaur'}}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="grid grid-cols-12 gap-6">
+        <div v-if="!isLoading" class="grid grid-cols-12 gap-6">
             <div class="lg:col-span-12 col-span-12">
                 <Card title="Ability" titleClass="text-center">
                     <ul class="list space-y-8 text-center">
@@ -40,6 +40,7 @@
                 </Card>
             </div>
         </div>
+        <pageLoader v-else />
     </div>
 </template>
 <script>
@@ -48,10 +49,12 @@ import Icon from "@/components/Icon";
 import { basicArea, basicAreaDark } from "@/constant/appex-chart.js";
 const img = 'https://img.pokemondb.net/artwork/large/pikachu.jpg';
 import pokemonApi from '@/lib/pokemon'
+import pageLoader from '@/components/Loader/pageLoader.vue';
 export default {
     components: {
         Card,
         Icon,
+        pageLoader
     },
     data() {
         return {
@@ -59,6 +62,7 @@ export default {
             basicAreaDark,
             img,
             pokemon: {},
+            isLoading: true,
         };
     },
     created() {
@@ -66,8 +70,10 @@ export default {
     },
     methods: {
         getdetail() {
+            this.isLoading = true;
             const callback = (res) => {
                 this.pokemon = res.data.data;
+                this.isLoading = false;
             };
             const err = (e) => {
                 console.log(e);
