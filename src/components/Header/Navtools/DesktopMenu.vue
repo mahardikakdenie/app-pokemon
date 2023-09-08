@@ -14,9 +14,9 @@
       <router-link :to="item.link" v-if="!item.child && !item.megamenu">
         <div class="flex flex-1 items-center space-x-[6px] rtl:space-x-reverse">
           <span class="icon-box" v-if="item.icon">
-            <Icon :icon="item.icon" />
+            <Icon :icon="item.icon" :class="{ 'text-blue-700': $route.path === item.link }" />
           </span>
-          <div class="text-box" v-if="item.title">{{ item.title }}</div>
+          <div class="text-box" :class="{ 'text-blue-700': $route.path === item.link }" v-if="item.title">{{ item.title }}</div>
         </div>
       </router-link>
       <a href="javascript: void(0);" v-if="item.child || item.megamenu">
