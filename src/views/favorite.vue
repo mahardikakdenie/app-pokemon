@@ -72,7 +72,6 @@ const getDataPokemon = () => {
 };
 
 const seeAbilityDetail = (data) => {
-    console.log('data : ', data.ability.name);
     abilityName.value = data.ability.name;
     activeModal.value = true;
     getDataFavoritePokemon(abilityName.value);
@@ -95,7 +94,6 @@ const getDataFavoritePokemon = (ability_name) => {
 
 const removeFavorite = (favoriteId,name) => {
     const index = lists.value.findIndex(curr => curr.name === name);
-    console.log("🚀 ~ file: favorite.vue:98 ~ removeFavorite ~ index:", index)
     btnLoading.value[index] = true;
 
     const callback = (res) => {

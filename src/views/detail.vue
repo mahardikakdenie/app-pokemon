@@ -68,7 +68,6 @@ export default {
         getdetail() {
             const callback = (res) => {
                 this.pokemon = res.data.data;
-                console.log("🚀 ~ file: detail.vue:119 ~ callback ~ this.pokemon:", this.pokemon)
             };
             const err = (e) => {
                 console.log(e);

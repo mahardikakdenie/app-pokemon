@@ -99,8 +99,7 @@ const seeAbilityDetail = (ability) => {
 
 const action = (name) => {
     if (route.path.includes('favorite') || props.isFavorite ) {
-        const url = props?.list.url;
-        const id = route.path.includes('favorite') ? props.list.id : url.split('/')[url.split('/').length - 2]
+        const id = route.path.includes('favorite') ? props.list.id : props.list.favorite_id;
         emit('remove-favorite', id, name);
     } else {
         emit('add-favorite', name);
