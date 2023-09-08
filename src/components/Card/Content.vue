@@ -31,9 +31,12 @@
                     class=""
                     @click="$router.push(`/detail/${name}`)"
                 />
+                
                 <Button
                     icon="mdi:heart"
-                    :btnClass="`${$route.path.includes('favorite') ? 'btn-danger' : 'btn-outline-dark'} btn-sm`"
+                    :isLoading="btnLoading"
+                    :btnClass="`${$route.path.includes('favorite') || isFavorite ? 'btn-danger' : 'btn-outline-dark'} btn-sm`"
+                    @click="action(name)"
                 />
             </div>
 		</div>
@@ -45,9 +48,12 @@ import Card from "@/components/Card";
 import Accordion from '@/components/Accordion';
 import Button from "@/components/Button";
 import Icon from "@/components/Icon";
+import { useRoute } from "vue-router";
 const img = 'https://img.pokemondb.net/artwork/large/pikachu.jpg';
 
-defineProps({
+const route = useRoute();
+
+const props = defineProps({
     name: {
         type: String,
         default: 'At Healthcare you will be treated by caring',
@@ -60,6 +66,18 @@ defineProps({
         type: Boolean,
         default: false,
     },
+    isFavorite: {
+        type: Boolean,
+        default: false,
+    },
+    btnLoading: {
+        type: Boolean,
+        default: false,
+    },
+    list: {
+        type: Array,
+        default: () => null,
+    }
 });
 
 const items = [
@@ -73,10 +91,20 @@ const items = [
         },
     ];
 
-const emit = defineEmits(['see-abiliti']);
+const emit = defineEmits(['see-abiliti', 'add-favorite']);
 
 const seeAbilityDetail = (ability) => {
     emit('see-ability', ability);
+};
+
+const action = (name) => {
+    if (route.path.includes('favorite') || props.isFavorite ) {
+        const url = props?.list.url;
+        const id = route.path.includes('favorite') ? props.list.id : url.split('/')[url.split('/').length - 2]
+        emit('remove-favorite', id, name);
+    } else {
+        emit('add-favorite', name);
+    }
 };
 </script>
 

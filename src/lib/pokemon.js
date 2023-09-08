@@ -24,4 +24,20 @@ export default {
             if (err) err(e);
         });
     },
+    insertToFavoritePokemon(params, cb, err) {
+        client.post(endpointFavorite, params)
+        .then(res => {
+            if(cb) cb(res);
+        }).catch(e => {
+            if (err) err(e);
+        });
+    },
+    removeFavorite(id, cb, err) {
+        client.delete(`${endpointFavorite}/${id}`)
+        .then(res => {
+            if(cb) cb(res);
+        }).catch(e => {
+            if (err) err(e);
+        });
+    },
 }

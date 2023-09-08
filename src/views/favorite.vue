@@ -6,8 +6,12 @@
             <CardContent 
                 isClickAble
                 :name="list.name" 
+                :list="list"
                 :abilities="list?.favorite"
+                :isFavorite="list.is_favorite"
+                :btnLoading="btnLoading[i]"
                 @see-ability="seeAbilityDetail"
+                @remove-favorite="removeFavorite"
             />
         </div>
     </div>
@@ -32,9 +36,12 @@ import CardContent from '@/components/Card/Content.vue'
 import { onMounted, ref } from "vue";
 import ModalAbility from '@/components/Modal/AbilityModal.vue'
 import pokemonApi from '@/lib/pokemon'
+import { useToast } from "vue-toastification";
 const isLoading = ref(true);
 const isLoadingAbility = ref(true);
 const lists = ref([]);
+
+const swall = useToast();
 
 const activeModal = ref(false);
 
@@ -43,6 +50,8 @@ onMounted(() => {
 });
 
 const abilityName = ref('');
+
+const btnLoading = ref([]);
 
 const getDataPokemon = () => {
     const params = {
@@ -53,6 +62,7 @@ const getDataPokemon = () => {
         isLoading.value = false;
         const data = res.data.data;
         lists.value = data;
+        btnLoading.value.map(() => false);
     };
     const err = (e) => {
         console.log(e);
@@ -81,6 +91,30 @@ const getDataFavoritePokemon = (ability_name) => {
     const err = () => {};
 
     pokemonApi.getDataFavoritePokemon(params, callback, err);
+};
+
+const removeFavorite = (favoriteId,name) => {
+    const index = lists.value.findIndex(curr => curr.name === name);
+    console.log("🚀 ~ file: favorite.vue:98 ~ removeFavorite ~ index:", index)
+    btnLoading.value[index] = true;
+
+    const callback = (res) => {
+        if (res.data.meta.status) {
+            btnLoading.value[index] = false;
+            if (index !== -1) {
+                lists.value[index].is_favorite = !lists.value[index].is_favorite;
+                lists.value.splice(index, 1);
+            }
+            swall.success("remove favorite successfully", {
+                timeout: 2000,
+            });
+        }
+    };
+    const err = (e) => {
+        console.log(e);
+    };
+
+    pokemonApi.removeFavorite(favoriteId, callback, err)
 };
 
 </script>

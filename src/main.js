@@ -20,6 +20,8 @@ import VCalendar from "v-calendar";
 import {createPinia} from 'pinia'
 import "v-calendar/dist/style.css";
 
+
+
 const pinia = createPinia()
 
 // vue use
@@ -37,7 +39,6 @@ const app = createApp(App)
     .use(VueGoodTablePlugin)
     .use(VueApexCharts)
     .use(VCalendar)
-
 app.config.globalProperties.$store = {};
 app.mount("#app");
 
