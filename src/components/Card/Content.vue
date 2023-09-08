@@ -3,8 +3,8 @@
 		<h5 class="card-title text-slate-900 dark:text-white">
 			{{ name }}
 		</h5>
-
-        <accordion :items="items" class="mt-2">
+    {{abilities.length}}
+        <accordion v-if="abilities.length !== 0" :items="items" class="mt-2">
             <template #content="">
                 <div class="p-2">
                     <ul class="max-w-md space-y-1 text-gray-500 list-decimal list-inside dark:text-gray-400">
@@ -26,7 +26,7 @@
                 />
                 <Button
                     icon="mdi:heart"
-                    btnClass="btn-outline-dark btn-sm"
+                    :btnClass="`${$route.path.includes('favorite') ? 'btn-danger' : 'btn-outline-dark'} btn-sm`"
                 />
             </div>
 		</div>
