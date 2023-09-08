@@ -96,9 +96,11 @@ const insertToFavoritePokemon = (pokemonId) => {
 
     const callback = (res) => {
         if (res.data.meta.status) {
+            const id = res.data.data.id;
             btnLoading.value[index] = false;
             if (index !== -1) {
                 lists.value[index].is_favorite = !lists.value[index].is_favorite;
+                lists.value[index].favorite_id = id;
             }
             swall.success("add to favorite successfully", {
                 timeout: 2000,
