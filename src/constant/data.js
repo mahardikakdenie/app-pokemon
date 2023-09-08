@@ -159,6 +159,11 @@ export const topMenu = [
     icon: "heroicons-outline:home",
     link: "/home",
   },
+  {
+    title: 'Favorite',
+    icon: 'mdi:heart',
+    link: '/favorite'
+  },
 ];
 
 // export const topMenu = [
